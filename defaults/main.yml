@@ -1,0 +1,19 @@
+---
+omz_users: []
+omz_root: yes
+omz_chsh: yes
+zsh_path: "/bin/zsh"
+
+omz_theme: "candy"
+omz_case_sensitive_completion: false
+omz_hype_insensitive_completion: false
+omz_disable_auto_update: false
+omz_auto_update_interval: 30
+omz_disable_ls_colors: false
+omz_disable_auto_title: false
+omz_enable_auto_correction: true
+omz_completion_waiting_dots: true
+omz_history_stamps: "yyyy-mm-dd"
+omz_plugins: "docker git vagrant vi-mode nmap rsync"
+omz_language: "en_US.UTF-8"
+

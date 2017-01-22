@@ -1,0 +1,34 @@
+---
+- name: install zsh shell packages
+  apt:
+    name: zsh
+    state: latest
+
+- name: clone oh-my-zsh git repository to user's home folder
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: /home/{{ item }}/.oh-my-zsh
+  with_items: "{{ omz_users }}"
+
+- name: clone oh-my-zsh git repository to root home folder
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: /root/.oh-my-zsh
+  when: omz_root
+
+- name: copy .zshrc template to user's home folder
+  template:
+    src: zshrc.j2
+    dest: /home/{{ item }}/.zshrc
+  with_items: "{{ omz_users }}"
+
+- name: copy .zshrc template to root home folder
+  template:
+    src: zshrc.j2
+    dest: /root/.zshrc
+
+- name: change default shell to zsh for users
+  user:
+    name: {{ item }}
+    shell: {{ zsh_path }}
+
