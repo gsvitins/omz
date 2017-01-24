@@ -1,8 +1,15 @@
 ---
-- name: install zsh shell packages
+- name: install zsh shell packages on debian based distro
   apt:
     name: zsh
     state: latest
+  when: ansible_os_family == 'Debian'
+
+- name: install zsh shell packages on redhat based distro
+  yum:
+    name: zsh
+    state: latest
+  when: ansible_os_family == 'RedHat'
 
 - name: clone oh-my-zsh git repository to user's home folder
   git:
