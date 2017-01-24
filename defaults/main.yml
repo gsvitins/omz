@@ -1,12 +1,12 @@
 ---
 omz_users: []
-omz_root: yes
-omz_chsh: yes
+omz_root: true
+omz_chsh: true
 zsh_path: "/bin/zsh"
 
 omz_theme: "candy"
 omz_case_sensitive_completion: false
-omz_hype_insensitive_completion: false
+omz_hyphen_insensitive_completion: false
 omz_disable_auto_update: false
 omz_auto_update_interval: 30
 omz_disable_ls_colors: false
