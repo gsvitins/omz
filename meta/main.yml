@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: Girts Svitins (gsvitins)
+  description: Ansible role to install zsh and setup oh-my-zsh framework.
+  company: none
+  license: MIT
+  min_ansible_version: 1.7
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - precise
+    - raring
+    - saucy
+    - trusty
+    - xenial
+  galaxy_tags:
+    - zsh
+    - shell
+    - system
+    - development
+    - environment
+    - users
+dependencies: []
