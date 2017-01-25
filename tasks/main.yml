@@ -55,12 +55,12 @@
 - name: change default shell to zsh for users
   user:
     name: "{{ item }}"
-    shell: "{{ zsh_path }}"
+    shell: "{{ omz_zsh_path }}"
   with_items: "{{ omz_users }}"
   when: omz_chsh
 
 - name: change default shell to zsh for root
   user:
     name: root
-    shell: "{{ zsh_path }}"
+    shell: "{{ omz_zsh_path }}"
   when: omz_chsh and omz_root

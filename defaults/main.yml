@@ -2,7 +2,7 @@
 omz_users: []
 omz_root: true
 omz_chsh: true
-zsh_path: "/bin/zsh"
+omz_zsh_path: "/bin/zsh"
 
 omz_theme: "candy"
 omz_case_sensitive_completion: false
