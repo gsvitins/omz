@@ -6,7 +6,8 @@ before_install:
 
 install:
   - pip install ansible
-  - "echo '[defaults]\nroles_path = ../' > ansible.cfg"
+  - "echo '[defaults]' > ansible.cfg"
+  - "echo 'roles_path = ../' >> ansible.cfg"
 
 script:
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
