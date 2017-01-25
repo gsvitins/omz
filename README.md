@@ -1,5 +1,8 @@
 # omz
 
+[![Build Status](https://travis-ci.org/gsvitins/omz.svg?branch=master)](https://travis-ci.org/gsvitins/omz)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-gsvitins.omz-lightgrey.svg)](https://galaxy.ansible.com/gsvitins/omz/)
+
 Ansible role to install zsh and setup [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) freamework.
 It can  be used to setup zsh shell for multiple users at once, including root.
 It uses [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)  framework as base for zsh configs/themes/plugins/etc.
