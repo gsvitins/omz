@@ -106,3 +106,7 @@ fi
 
 PROMPT='${ssh_prompt}%n%F{147}@%f%m:%F{147}%~%f${is_root} '
 RPROMPT='%F{237}%T%f'
+
+# enable back-tab-completion with shift-tab
+bindkey -M menuselect '^[[Z' reverse-menu-complete
+
