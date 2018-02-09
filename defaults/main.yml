@@ -14,6 +14,6 @@ omz_disable_auto_title: false
 omz_enable_auto_correction: true
 omz_completion_waiting_dots: true
 omz_history_stamps: "yyyy-mm-dd"
-omz_plugins: "docker git vagrant vi-mode nmap rsync colored-man-pages"
+omz_plugins: "colored-man-pages docker docker-compose git history history-substring-search kubectl nmap pip python rsync sudo systemd tmux ubuntu vagrant vi-mode virtualenvyum"
 omz_language: "en_US.UTF-8"
 

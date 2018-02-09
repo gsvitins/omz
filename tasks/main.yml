@@ -22,6 +22,7 @@
   git:
     repo: git://github.com/robbyrussell/oh-my-zsh.git
     dest: /root/.oh-my-zsh
+  become: yes
   when: omz_root
 
 - name: copy .zshrc template to user's home folder
@@ -34,6 +35,7 @@
   template:
     src: zshrc.j2
     dest: /root/.zshrc
+  become: yes
   when: omz_root
 
 - name: setup user permissions for .oh-my-zsh dir
@@ -63,4 +65,5 @@
   user:
     name: root
     shell: "{{ omz_zsh_path }}"
+  become: yes
   when: omz_chsh and omz_root
