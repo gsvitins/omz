@@ -3,12 +3,14 @@
   apt:
     name: zsh
     state: latest
+  become: yes
   when: ansible_os_family == 'Debian'
 
 - name: install zsh shell packages on redhat based distro
   yum:
     name: zsh
     state: latest
+  become: yes
   when: ansible_os_family == 'RedHat'
 
 - name: clone oh-my-zsh git repository to user's home folder
@@ -59,6 +61,7 @@
     name: "{{ item }}"
     shell: "{{ omz_zsh_path }}"
   with_items: "{{ omz_users }}"
+  become: yes
   when: omz_chsh
 
 - name: change default shell to zsh for root
