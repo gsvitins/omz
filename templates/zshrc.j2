@@ -56,7 +56,7 @@ export LANG={{ omz_language }}
 if [[ "$USER" == "root" ]]; then
     is_root='%F{203}%#%f'
 else
-    is_root='%#'
+    is_root='$'
 fi
 
 if [[ -n "$SSH_CLIENT" ]]; then
@@ -65,8 +65,12 @@ else
     ssh_prompt=''
 fi
 
-PROMPT='${ssh_prompt}%n%F{147}@%f%m:%F{147}%~%f${is_root} '
+PROMPT='${ssh_prompt}%n%F{147}@%f%m:%F{147}%~%f$(git_prompt_info)${is_root} '
 RPROMPT='%F{237}%T%f'
+ZSH_THEME_GIT_PROMPT_PREFIX="(%F{147}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 # enable back-tab-completion with shift-tab
 bindkey '^[[Z' reverse-menu-complete
