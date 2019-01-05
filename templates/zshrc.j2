@@ -65,12 +65,12 @@ else
     ssh_prompt=''
 fi
 
-PROMPT='${ssh_prompt}%n%F{147}@%f%m:%F{147}%~%f$(git_prompt_info)${is_root} '
+PROMPT='${ssh_prompt}%n%F{147}@%f%m:%F{147}%~$(git_prompt_info)%f${is_root} %{$reset_color%}'
 RPROMPT='%F{237}%T%f'
-ZSH_THEME_GIT_PROMPT_PREFIX="("
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%F{147}✔"
+ZSH_THEME_GIT_PROMPT_PREFIX="%f[%F{147}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{203}✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="✔"
 
 # enable back-tab-completion with shift-tab
 bindkey '^[[Z' reverse-menu-complete
