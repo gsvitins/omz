@@ -75,3 +75,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN="✔"
 
 # enable back-tab-completion with shift-tab
 bindkey '^[[Z' reverse-menu-complete
+
+{% if omz_disable_xon_xoff %}
+# disables ctrl+s (xon/xoff) functionality
+stty -ixon
+{% endif %}
