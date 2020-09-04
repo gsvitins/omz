@@ -81,10 +81,8 @@ bindkey '^[[Z' reverse-menu-complete
 stty -ixon
 {% endif %}
 
-# ask for SSH key passphrase on startup if not at home
-if [[ $HOST != "lasus" ]]; then
-    pgrep ssh-agent &> /dev/null
-    if [[ $? -eq 1 ]]; then
-        eval `ssh-agent` && ssh-add ~/.ssh/id_rsa
-    fi
+# enable azure-cli completion
+if [ -f /usr/bin/az ]; then
+    autoload -U +X bashcompinit && bashcompinit
+    source /etc/bash_completion.d/azure-cli
 fi
