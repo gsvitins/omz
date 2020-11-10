@@ -87,3 +87,6 @@ if [ -f /usr/bin/az ]; then
     autoload -U +X bashcompinit && bashcompinit
     source /etc/bash_completion.d/azure-cli
 fi
+
+# zsh-autosuggestion binds
+bindkey '^ ' autosuggest-accept

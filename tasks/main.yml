@@ -19,11 +19,23 @@
     dest: /home/{{ item }}/.oh-my-zsh
   with_items: "{{ omz_users }}"
 
-
 - name: clone oh-my-zsh git repository to root home folder
   git:
     repo: git://github.com/robbyrussell/oh-my-zsh.git
     dest: /root/.oh-my-zsh
+  become: yes
+  when: omz_root
+
+- name: clone zsh-autosuggestions plugin git repo
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/{{ item }}/.oh-my-zsh/plugins/zsh-autosuggestions
+  with_items: "{{ omz_users }}"
+
+- name: clone zsh-autosuggestions plugin git repo for root
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /root/.oh-my-zsh/plugins/zsh-autosuggestions
   become: yes
   when: omz_root
 
