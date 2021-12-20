@@ -43,12 +43,14 @@
   template:
     src: zshrc.j2
     dest: /home/{{ item }}/.zshrc
+    backup: yes
   with_items: "{{ omz_users }}"
 
 - name: copy .zshrc template to root home folder
   template:
     src: zshrc.j2
     dest: /root/.zshrc
+    backup: yes
   become: yes
   when: omz_root
 
