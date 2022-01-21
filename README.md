@@ -6,6 +6,7 @@
 Ansible role to install zsh and setup [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) freamework.
 It can  be used to setup zsh shell for multiple users at once, including root.
 It uses [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)  framework as base for zsh configs/themes/plugins/etc.
+Also you can install [McFly](https://github.com/cantino/mcfly) optionally if you set omz_mcfly_enable: true
 
 Role variables
 --------------
