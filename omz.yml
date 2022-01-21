@@ -3,6 +3,10 @@
   roles:
     - role: '{{playbook_dir}}'
   vars:
+    omz_enable: true
     omz_plugins: "colored-man-pages docker docker-compose git git-prompt history history-substring-search kubectl helm nmap pip python rsync systemd ubuntu vagrant vi-mode aws terraform zsh-autosuggestions"
     omz_users:
       - bxz
+    omz_mcfly_enable: true
+    omz_mcfly_version: latest
+

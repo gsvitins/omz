@@ -1,0 +1,86 @@
+---
+- name: install zsh shell packages on debian based distro
+  apt:
+    name: zsh
+    state: latest
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: install zsh shell packages on redhat based distro
+  yum:
+    name: zsh
+    state: latest
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: clone oh-my-zsh git repository to user's home folder
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: /home/{{ item }}/.oh-my-zsh
+  with_items: "{{ omz_users }}"
+
+- name: clone oh-my-zsh git repository to root home folder
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: /root/.oh-my-zsh
+  become: yes
+  when: omz_root
+
+- name: clone zsh-autosuggestions plugin git repo
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/{{ item }}/.oh-my-zsh/plugins/zsh-autosuggestions
+  with_items: "{{ omz_users }}"
+
+- name: clone zsh-autosuggestions plugin git repo for root
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /root/.oh-my-zsh/plugins/zsh-autosuggestions
+  become: yes
+  when: omz_root
+
+- name: copy .zshrc template to user's home folder
+  template:
+    src: zshrc.j2
+    dest: /home/{{ item }}/.zshrc
+    backup: yes
+  with_items: "{{ omz_users }}"
+
+- name: copy .zshrc template to root home folder
+  template:
+    src: zshrc.j2
+    dest: /root/.zshrc
+    backup: yes
+  become: yes
+  when: omz_root
+
+- name: setup user permissions for .oh-my-zsh dir
+  file:
+    path: /home/{{ item }}/.oh-my-zsh
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0755
+  with_items: "{{ omz_users }}"
+
+- name: setup user permissions for .zshrc file
+  file:
+    path: /home/{{ item }}/.zshrc
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0640
+  with_items: "{{ omz_users }}"
+
+- name: change default shell to zsh for users
+  user:
+    name: "{{ item }}"
+    shell: "{{ omz_zsh_path }}"
+  with_items: "{{ omz_users }}"
+  become: yes
+  when: omz_chsh
+
+- name: change default shell to zsh for root
+  user:
+    name: root
+    shell: "{{ omz_zsh_path }}"
+  become: yes
+  when: omz_chsh and omz_root

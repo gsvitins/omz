@@ -10,6 +10,7 @@ It uses [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)  framework as bas
 Role variables
 --------------
 ```yaml
+    omz_enable: false
     omz_users: []
     omz_root: true
     omz_chsh: true
@@ -26,6 +27,10 @@ Role variables
     omz_history_stamps: "yyyy-mm-dd"
     omz_plugins: "docker git vagrant vi-mode nmap rsync"
     omz_language: "en_US.UTF-8"
+    omz_mcfly_enable: false
+    omz_mcfly_vim: true
+    omz_mcfly_results: 50
+    omz_mcfly_history: 10000
 ```
 Examples
 --------
@@ -33,6 +38,8 @@ Examples
 - hosts: all
   roles:
       - { role: omz,
+          omz_enable: true,
+          omz_mcfly_enable: true,
           omz_users: [user1, user2],
           omz_theme: "cloud",
           omz_completion_waiting_dots: false

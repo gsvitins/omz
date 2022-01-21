@@ -111,3 +111,13 @@ fi
 
 # zsh-autosuggestion binds
 bindkey '^ ' autosuggest-accept
+
+{% if omz_mcfly_enable %}
+# mcfly settings
+eval "$(mcfly init zsh)"
+export MCFLY_RESULTS={{ omz_mcfly_results }}
+export MCFLY_HISTORY_LIMIT={{ omz_mcfly_history }}
+{% if omz_mcfly_vim %}
+export MCFLY_KEY_SCHEME=vim
+{% endif %}
+{% endif %}

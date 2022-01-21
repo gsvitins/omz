@@ -1,0 +1,53 @@
+---
+- name: get the latest McFly release version
+  shell: |
+    curl -s https://github.com/cantino/mcfly/releases/latest | cut -d'"' -f2 | rev | cut -d'/' -f1 | rev
+  register: omz_mcfly_latest_version
+  when: omz_mcfly_version == "latest"
+  tags:
+    - omz
+    - mcfly
+
+- debug:
+    msg: "{{ omz_mcfly_version }}"
+  tags:
+    - omz
+    - mcfly
+
+- name: download latest McFly release
+  get_url:
+    url: "https://github.com/cantino/mcfly/releases/download/{{ omz_mcfly_latest_version.stdout }}/mcfly-{{ omz_mcfly_latest_version.stdout }}-x86_64-unknown-linux-musl.tar.gz"
+    dest: "/tmp/mcfly.tar.gz"
+    force: yes
+  when: omz_mcfly_version == "latest"
+  tags:
+    - omz
+    - mcfly
+
+- name: download McFly release
+  get_url:
+    url: "https://github.com/cantino/mcfly/releases/download/{{ omz_mcfly_version }}/mcfly-{{ omz_mcfly_version }}-x86_64-unknown-linux-musl.tar.gz"
+    dest: "/tmp/mcfly.tar.gz"
+    force: yes
+  when: omz_mcfly_version != "latest"
+
+- name: unarchive downloaded package
+  unarchive:
+    src: "/tmp/mcfly.tar.gz"
+    dest: "/tmp"
+  tags:
+    - omz
+    - mcfly
+
+- name: install binary to /usr/local/bin/mcfly
+  copy:
+    src: /tmp/mcfly
+    remote_src: yes
+    dest: /usr/local/bin/mcfly
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  tags:
+    - omz
+    - mcfly
