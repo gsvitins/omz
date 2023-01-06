@@ -13,6 +13,20 @@
   become: yes
   when: ansible_os_family == 'RedHat'
 
+- name: make sure git package is installed on debian based distro
+  apt:
+    name: git
+    state: present
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: make sure git package is installed on redhat based distro
+  yum:
+    name: git
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
 - name: clone oh-my-zsh git repository to user's home folder
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
